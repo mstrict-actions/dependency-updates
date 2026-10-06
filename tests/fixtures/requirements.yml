@@ -1,0 +1,3 @@
+collections:
+  - name: example.collection
+    version: 1.0.0

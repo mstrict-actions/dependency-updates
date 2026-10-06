@@ -1,0 +1,20 @@
+{
+  "name": "GitHub Actions (TypeScript)",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24-trixie",
+  "postCreateCommand": "sudo chown \"$(id -u):$(id -g)\" node_modules && npm ci",
+  "forwardPorts": [9229],
+  "mounts": [
+    "source=${devcontainerId}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ],
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md"]
+    }
+  },
+  "remoteEnv": {
+    "GITHUB_TOKEN": "${localEnv:GITHUB_TOKEN}"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  }
+}

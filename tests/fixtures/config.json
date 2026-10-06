@@ -1,0 +1,10 @@
+{
+  "branch": "feature/dependencies",
+  "baseBranch": "main",
+  "checksWorkflow": "dependencies-checks.yml",
+  "toolsFile": "tests/fixtures/tools.json",
+  "dockerfile": "tests/fixtures/Dockerfile",
+  "collectionsFile": "tests/fixtures/requirements.yml",
+  "terraformRootsDirectory": "tests/fixtures/terraform",
+  "enabled": ["toolchain", "galaxy"]
+}

@@ -1,0 +1,3 @@
+FROM hashicorp/terraform:1.0.0@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa AS terraform
+FROM node:24-bookworm-slim@sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb AS node
+FROM python:3.14-slim-bookworm@sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
