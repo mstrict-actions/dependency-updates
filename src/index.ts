@@ -372,7 +372,7 @@ async function update(config: unknown): Promise<string> {
   return `Updated ${files.length.toString()} files; checks dispatched`
 }
 async function run(): Promise<void> {
-  let message = 'Dependency operation did not complete'
+  let message: string
   try {
     const config: unknown = JSON.parse(
       await readFile(core.getInput('config', { required: true }), 'utf8'),
@@ -385,14 +385,13 @@ async function run(): Promise<void> {
   } catch {
     message = 'Dependency operation failed; external response withheld'
     core.setFailed(message)
-  } finally {
-    if (process.env['GITHUB_STEP_SUMMARY'] !== undefined) {
-      try {
-        core.summary.addHeading('Dependency updates').addRaw(`${message}\n`)
-        await core.summary.write()
-      } catch {
-        core.warning('Could not write dependency summary')
-      }
+  }
+  if (process.env['GITHUB_STEP_SUMMARY'] !== undefined) {
+    try {
+      core.summary.addHeading('Dependency updates').addRaw(`${message}\n`)
+      await core.summary.write()
+    } catch {
+      core.warning('Could not write dependency summary')
     }
   }
 }

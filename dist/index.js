@@ -51504,7 +51504,7 @@ async function update(config) {
   return `Updated ${files.length.toString()} files; checks dispatched`;
 }
 async function run() {
-  let message = "Dependency operation did not complete";
+  let message;
   try {
     const config = JSON.parse(
       await readFile(getInput("config", { required: true }), "utf8")
@@ -51517,15 +51517,14 @@ async function run() {
   } catch {
     message = "Dependency operation failed; external response withheld";
     setFailed(message);
-  } finally {
-    if (process.env["GITHUB_STEP_SUMMARY"] !== void 0) {
-      try {
-        summary.addHeading("Dependency updates").addRaw(`${message}
+  }
+  if (process.env["GITHUB_STEP_SUMMARY"] !== void 0) {
+    try {
+      summary.addHeading("Dependency updates").addRaw(`${message}
 `);
-        await summary.write();
-      } catch {
-        warning("Could not write dependency summary");
-      }
+      await summary.write();
+    } catch {
+      warning("Could not write dependency summary");
     }
   }
 }
